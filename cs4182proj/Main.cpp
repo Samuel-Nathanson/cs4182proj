@@ -281,6 +281,7 @@ void DrawRoom()
 	{
 		glTranslated(350, 0, 0);
 
+
 		/* These make sure that every once in a while, a new row is started. */
 		if (i == 5)		glTranslated(-1575, -350, 0);
 		if (i == 9)		glTranslated(-1225, -350, 0);
@@ -320,6 +321,48 @@ int main(int argc, char **argv)
 	/* Basic OpenGL initialization, handled in 'The Screen'. */
 	glShadeModel(GL_SMOOTH);
 	glClearColor(0, 0, 0, 1);
+
+	// Enable Lighting
+	glEnable(GL_LIGHTING);
+	// Create light components
+	float ambientLight[] = { 100.0f, 0.2f, 0.2f, 1.0f };
+	float diffuseLight[] = { 0.8f, 0.8f, 0.8, 1.0f };
+	float specularLight[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+	float position[] = { X,Y, Z+200, 1.0f };
+
+	//Add directed light
+	GLfloat lightColor1[] = { 0.0f, 200.0f, 2.0f, 1.0f }; //Color (0.5, 0.2, 0.2)
+														//Coming from the direction (-1, 0.5, 0.5)
+	GLfloat lightPos1[] = { X, Y, Z+200, 0.0f };
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
+	glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
+
+	// Assign created components to GL_LIGHT0
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);
+	glLightfv(GL_LIGHT0, GL_POSITION, position);
+	// Enable Light Source 1 and
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
+	// Create light components
+	float ambientLight[] = { 100.0f, 0.2f, 0.2f, 1.0f };
+	float diffuseLight[] = { 0.8f, 0.8f, 0.8, 1.0f };
+	float specularLight[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+	float position[] = { X,Y, Z+200, 1.0f };
+
+	//Add directed light
+	GLfloat lightColor1[] = { 0.0f, 200.0f, 2.0f, 1.0f }; //Color (0.5, 0.2, 0.2)
+														//Coming from the direction (-1, 0.5, 0.5)
+	GLfloat lightPos1[] = { X, Y, Z+200, 0.0f };
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
+	glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
+
+	// Assign created components to GL_LIGHT0
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);
+	glLightfv(GL_LIGHT0, GL_POSITION, position);
 
 	glViewport(0, 0, 800, 600);
 
